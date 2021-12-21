@@ -5,6 +5,9 @@
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
  */
 int eliminate(Matrix *mat, Matrix *b){
+    if(mat->columns != mat->rows || b->columns != 1) {
+        return 2;
+    }
     //dla latwosci obliczen zostanie utworzona nowa macierz *tmp, ktora bedzie polaczeniem macierzy *mat i *b
     int i, j, k;
     Matrix *tmp = createMatrix(mat->rows, mat->columns+1);
@@ -13,6 +16,18 @@ int eliminate(Matrix *mat, Matrix *b){
             tmp->data[i][j] = mat->data[i][j];
         }
         tmp->data[i][mat->columns] = b->data[i][0];
+    }
+
+    //wykorzystanie elementu maksymalnego oraz sklaujacego
+    double c;
+    for(i = mat->rows-1;i>0;i--) {
+        if(tmp->data[i-1][0]<tmp->data[i][0]) {
+            for(j = 0; j <= mat->rows; j++) {
+                c = tmp->data[i][j];
+                tmp->data[i][j] = tmp->data[i-1][j];
+                tmp->data[i-1][j]=c;
+            }
+        }
     }
 
     //funkcja odpowiadajaca za utworzenie macierzy schodkowej gornej
