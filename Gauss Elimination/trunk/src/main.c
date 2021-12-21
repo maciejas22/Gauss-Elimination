@@ -13,6 +13,8 @@ int main(int argc, char ** argv) {
 
 	if (A == NULL) return -1;
 	if (b == NULL) return -2;
+	printToScreen(A);
+    	printToScreen(b);
 
 	res = eliminate(A,b);
     if(res == 1) {
@@ -26,8 +28,7 @@ int main(int argc, char ** argv) {
         fprintf(stderr,"Błąd! Macierz nieprawidlowych rozmiarow.\n");
         return 2;
     }
-    printToScreen(A);
-    printToScreen(b);
+    
     printToScreen(x);
     freeMatrix(x);
 	freeMatrix(A);
