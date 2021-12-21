@@ -14,7 +14,7 @@ int main(int argc, char ** argv) {
 	if (A == NULL) return -1;
 	if (b == NULL) return -2;
 	printToScreen(A);
-    	printToScreen(b);
+    printToScreen(b);
 
 	res = eliminate(A,b);
     if(res == 1) {
