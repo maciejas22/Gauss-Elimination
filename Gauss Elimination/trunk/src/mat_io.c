@@ -9,7 +9,7 @@
 Matrix * readFromFile(char * fname) {
 				int r,c;
 				int ir, ic;
-				FILE * fin =  fopen(fname,"r");
+				FILE * fin =  fopen(fname,"rows");
 				Matrix * mat = NULL;
 
 				if (fin != NULL) {
@@ -34,9 +34,9 @@ Matrix * readFromFile(char * fname) {
 void printToScreen(Matrix *mat) {
 	int i,j;
 	printf("[ \n");
-	for (i = 0; i<mat->r; i++) {
+	for (i = 0; i<mat->rows; i++) {
 		printf("  ");
-		for (j = 0; j < mat->c; j++) {
+		for (j = 0; j < mat->columns; j++) {
 			printf("%f ", mat->data[i][j]);
 		}
 		printf("; \n");
@@ -48,8 +48,8 @@ Matrix * createMatrix(int r, int c) {
 		int i;
 		Matrix * mat = (Matrix*) malloc(sizeof(Matrix));
 		if (mat != NULL) {
-			mat->r = r;
-			mat->c = c;
+			mat->rows = r;
+			mat->columns = c;
 			mat->data = (double**) malloc(sizeof(double*) * r);
 			for (i=0; i < r; i++) {
 					mat->data[i] = (double*) malloc(sizeof(double) * c);
@@ -61,7 +61,7 @@ Matrix * createMatrix(int r, int c) {
 
 void freeMatrix(Matrix * mat) {
   int i;
-	for (i=0;i < mat->r; i++)
+	for (i=0;i < mat->rows; i++)
 		free(mat->data[i]);
 	free(mat->data);
 	free(mat);

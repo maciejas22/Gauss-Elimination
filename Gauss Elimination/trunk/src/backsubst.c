@@ -7,7 +7,7 @@
  */
 int  backsubst(Matrix *x, Matrix *mat, Matrix *b) {
     //jezeli macierz nie jest kwadratowa return 2
-    if(mat->columns != mat->rows) {
+    if(mat->columns != mat->rows || b->columns != 1) {
         return 2;
     }
 
